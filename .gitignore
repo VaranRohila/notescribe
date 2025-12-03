@@ -1,0 +1,9 @@
+__pycache__
+.env
+.vscode
+cover_letters
+outputs
+serp_extract
+test.ipynb
+data
+models

@@ -1,0 +1,608 @@
+/* Global Styles */
+:root {
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+    --secondary-color: #64748b;
+    --background: #f8fafc;
+    --surface: #ffffff;
+    --border: #e2e8f0;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    
+    /* Entity Colors */
+    --age: #fbbf24;
+    --biological-structure: #a78bfa;
+    --date: #60a5fa;
+    --detailed-description: #34d399;
+    --disease-disorder: #f87171;
+    --dosage: #fb923c;
+    --duration: #818cf8;
+    --medication: #22d3ee;
+    --sex: #ec4899;
+    --sign-symptom: #f472b6;
+    --therapeutic-procedure: #4ade80;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: var(--background);
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid var(--border);
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+/* Layout */
+.content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 1200px) {
+    .content-wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Main Panel */
+.main-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Input Section */
+.input-section {
+    background: var(--surface);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+.input-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    resize: vertical;
+    transition: border-color 0.2s;
+    min-height: 150px;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+/* Buttons */
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-primary:disabled {
+    background-color: var(--secondary-color);
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-secondary {
+    background-color: var(--surface);
+    color: var(--text-primary);
+    border: 2px solid var(--border);
+}
+
+.btn-secondary:hover {
+    background-color: var(--background);
+}
+
+.btn-icon {
+    font-size: 1.2rem;
+}
+
+/* Results Section */
+.results-section {
+    background: var(--surface);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    min-height: 400px;
+}
+
+.results-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+}
+
+.results-section h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+/* States */
+.loading-state, .error-state, .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+.spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid var(--border);
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+.spinner-small {
+    width: 24px;
+    height: 24px;
+    border: 3px solid var(--border);
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 0.5rem;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.error-state {
+    color: #dc2626;
+}
+
+/* Tagged Text */
+.tagged-text-container {
+    margin-bottom: 2rem;
+}
+
+.tagged-text {
+    background: var(--background);
+    padding: 1.5rem;
+    border-radius: 8px;
+    line-height: 2;
+    font-size: 1rem;
+}
+
+.entity-tag {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 500;
+    display: inline-block;
+    margin: 0.1rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.entity-tag:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow);
+}
+
+/* Entity Types */
+.entity-Age { background-color: var(--age); color: #78350f; }
+.entity-Biological_structure { background-color: var(--biological-structure); color: #4c1d95; }
+.entity-Date { background-color: var(--date); color: #1e3a8a; }
+.entity-Detailed_description { background-color: var(--detailed-description); color: #064e3b; }
+.entity-Disease_disorder { background-color: var(--disease-disorder); color: #7f1d1d; }
+.entity-Dosage { background-color: var(--dosage); color: #7c2d12; }
+.entity-Duration { background-color: var(--duration); color: #312e81; }
+.entity-Medication { background-color: var(--medication); color: #164e63; }
+.entity-Sex { background-color: var(--sex); color: #831843; }
+.entity-Sign_symptom { background-color: var(--sign-symptom); color: #831843; }
+.entity-Therapeutic_procedure, .entity-therapeutic_procedure { 
+    background-color: var(--therapeutic-procedure); 
+    color: #14532d; 
+}
+
+/* Entity Summary */
+.entity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.entity-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem;
+    background: var(--background);
+    border-radius: 8px;
+    border-left: 4px solid;
+}
+
+.entity-type-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.entity-text {
+    flex: 1;
+    font-size: 0.95rem;
+}
+
+/* Examples Panel */
+.examples-panel {
+    background: var(--surface);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    height: fit-content;
+    position: sticky;
+    top: 2rem;
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+}
+
+.examples-header {
+    margin-bottom: 1.5rem;
+}
+
+.examples-panel h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.view-toggle {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background: var(--background);
+    border-radius: 8px;
+}
+
+.toggle-option {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.toggle-option:hover {
+    background: var(--surface);
+}
+
+.toggle-option input[type="radio"] {
+    display: none;
+}
+
+.toggle-option input[type="radio"]:checked + span {
+    color: var(--primary-color);
+}
+
+.toggle-option:has(input[type="radio"]:checked) {
+    background: var(--surface);
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.examples-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.example-card {
+    padding: 1rem;
+    background: var(--background);
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.example-card:hover {
+    border-color: var(--primary-color);
+    background: var(--surface);
+    transform: translateX(4px);
+}
+
+.example-card.active {
+    border-color: var(--primary-color);
+    background: #eff6ff;
+}
+
+.example-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.example-id {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.example-type {
+    font-size: 1rem;
+    opacity: 0.7;
+}
+
+.example-preview {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    line-height: 1.4;
+}
+
+/* Legend */
+.legend {
+    background: var(--surface);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+.legend h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.legend-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.75rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 6px;
+    background: var(--background);
+}
+
+.legend-color {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.legend-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--background);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}
+
+/* Icon Styling */
+.icon-clipboard,
+.icon-search,
+.icon-trash,
+.icon-pointer,
+.icon-chat {
+    display: inline-block;
+    font-style: normal;
+}
+
+/* Conversation Display */
+.conversation-container {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 2px solid var(--border);
+}
+
+.conversation-container h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.conversation-display {
+    background: var(--background);
+    padding: 1.5rem;
+    border-radius: 8px;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.conversation-message {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.conversation-message:last-child {
+    margin-bottom: 0;
+}
+
+.message-label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.message-label.doctor {
+    color: var(--primary-color);
+}
+
+.message-label.patient {
+    color: #059669;
+}
+
+.message-label::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.message-label.doctor::before {
+    background-color: var(--primary-color);
+}
+
+.message-label.patient::before {
+    background-color: #059669;
+}
+
+.message-text {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    line-height: 1.5;
+    font-size: 0.95rem;
+}
+
+.message-text.doctor {
+    background: #eff6ff;
+    color: var(--text-primary);
+    border-left: 3px solid var(--primary-color);
+}
+
+.message-text.patient {
+    background: #ecfdf5;
+    color: var(--text-primary);
+    border-left: 3px solid #059669;
+}
+
+.conversation-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background: var(--background);
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.conversation-toggle:hover {
+    border-color: var(--primary-color);
+    background: #eff6ff;
+}
+
+.conversation-toggle input[type="checkbox"] {
+    cursor: pointer;
+}
+
+.conversation-toggle label {
+    cursor: pointer;
+    user-select: none;
+    font-weight: 500;
+}
+

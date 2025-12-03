@@ -1,0 +1,101 @@
+[tool.poetry]
+name = "notescribe"
+version = "0.1.0"
+description = "Notescribe is an end-to-end NLP and LLM-powered solution designed to extract clinical entities from patient notes and generate risk scores."
+authors = ["Varan Singh Rohila <varansinghrohila@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{ include = "src" }]
+
+package-mode = false
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.15"
+tqdm = "*"
+scikit-learn = "*"
+pandas = "*"
+numpy = "*"
+matplotlib = "*"
+plotly = "*"
+requests = "*"
+datetime = "*"
+fastapi = "*"
+uvicorn = "*"
+pydantic = "*"
+python-dotenv = "*"
+transformers = "^4.57.1"
+torch = {version = "^2.9.0", source = "pytorch"}
+torchvision = {version = "^0.24.0", source = "pytorch"}
+torchaudio = {version = "^2.9.0", source = "pytorch"}
+tabulate = "^0.9.0"
+accelerate = "^1.11.0"
+datasets = "^4.4.1"
+seqeval = "^1.2.2"
+hf-xet = "^1.2.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "*"
+pytest-cov = "*"
+black = "*"
+ruff = "*"
+pre-commit = "*"
+ipykernel = "*"
+commitizen = "*"
+
+
+[[tool.poetry.source]]
+name = "pytorch"
+url = "https://download.pytorch.org/whl/cu130"
+priority = "supplemental"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 120
+target-version = ['py311']
+include = '\.pyi?$'
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+
+# Exclude a variety of commonly ignored directories.
+exclude = [
+    ".git",
+    ".pytest_cache",
+    "__pycache__",
+    "build",
+    "dist"
+]
+
+[tool.ruff.lint]
+# Enable Pyflakes (`F`), pycodestyle (`E`), isort (`I`) and more
+select = ["E", "F", "I", "D", "N", "S", "B", "A", "C4", "RUF"]
+ignore = ["E203"]  # Same as Black
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*.py" = ["S101"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"  # Use Google-style docstrings
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+force-wrap-aliases = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::UserWarning",
+]
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+version = "0.1.1"
+version_files = [
+    "pyproject.toml:version"
+] 
