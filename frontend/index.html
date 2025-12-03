@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoteScribe - Clinical NER</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><span class="icon-clipboard">📋</span> NoteScribe</h1>
+            <p class="subtitle">Clinical Named Entity Recognition</p>
+        </header>
+
+        <main>
+            <div class="content-wrapper">
+                <!-- Left Panel: Input & Results -->
+                <div class="main-panel">
+                    <section class="input-section">
+                        <h2>Input Clinical Note</h2>
+                        <textarea 
+                            id="textInput" 
+                            placeholder="Enter clinical text here or select an example from the right panel..."
+                            rows="6"
+                        ></textarea>
+                        <div class="button-group">
+                            <button id="analyzeBtn" class="btn btn-primary">
+                                <span class="btn-icon icon-search">⚲</span>
+                                Analyze Text
+                            </button>
+                            <button id="clearBtn" class="btn btn-secondary">
+                                <span class="btn-icon icon-trash">🗑</span>
+                                Clear
+                            </button>
+                        </div>
+                    </section>
+
+                    <section class="results-section" id="resultsSection">
+                        <h2>Analysis Results</h2>
+                        
+                        <!-- Loading State -->
+                        <div id="loadingState" class="loading-state" style="display: none;">
+                            <div class="spinner"></div>
+                            <p>Analyzing clinical note...</p>
+                        </div>
+
+                        <!-- Error State -->
+                        <div id="errorState" class="error-state" style="display: none;">
+                            <p id="errorMessage"></p>
+                        </div>
+
+                        <!-- Empty State -->
+                        <div id="emptyState" class="empty-state">
+                            <p><span class="icon-pointer">☝</span> Enter text above or select an example to get started</p>
+                        </div>
+
+                        <!-- Results Display -->
+                        <div id="resultsDisplay" style="display: none;">
+                            <!-- Tagged Text -->
+                            <div class="tagged-text-container">
+                                <h3>Tagged Text</h3>
+                                <div id="taggedText" class="tagged-text"></div>
+                            </div>
+
+                            <!-- Entity Summary -->
+                            <div class="entity-summary">
+                                <h3>Identified Entities (<span id="entityCount">0</span>)</h3>
+                                <div id="entityList" class="entity-list"></div>
+                            </div>
+
+                            <!-- Conversation Display -->
+                            <div class="conversation-container" id="conversationContainer" style="display: none;">
+                                <h3><span class="icon-chat">💬</span> Doctor-Patient Conversation</h3>
+                                <div id="conversationDisplay" class="conversation-display"></div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Right Panel: Examples -->
+                <aside class="examples-panel">
+                    <div class="examples-header">
+                        <h2>Example Clinical Notes</h2>
+                        <div class="view-toggle">
+                            <label class="toggle-option">
+                                <input type="radio" name="viewMode" value="full_note" checked>
+                                <span>Full Note</span>
+                            </label>
+                            <label class="toggle-option">
+                                <input type="radio" name="viewMode" value="conversation">
+                                <span>Conversation</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div id="examplesContainer" class="examples-container">
+                        <div class="loading-state">
+                            <div class="spinner-small"></div>
+                            <p>Loading examples...</p>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </main>
+
+        <!-- Legend -->
+        <footer class="legend">
+            <h3>Entity Types</h3>
+            <div class="legend-grid" id="legendGrid">
+                <!-- Will be populated dynamically -->
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
